@@ -7,11 +7,7 @@ import java.util.concurrent.TimeUnit;
  * Author: Theodor Jonsson, ens18trn
  * Date: April 13 2022
  * Course: Objektorienterad Programmeringsmetodik
- *  __________________________________________________________________________________________________
- * | Has a bug when the robot can't walk to the right in the example labyrinth just before the goal  |
- * | and i do not know why can't seem to fix it. it works when i just remove one wall aswell         |
- * | as it works in different types of mazes                                                         |
- * |_________________________________________________________________________________________________|
+ *
  */
 
 /**
@@ -20,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * Gets the file from the arguments and inputs it to a scanner which is
  * used for creating the maze. test
  *
- * Loops through the move method from the robot until it has reached the goale
+ * Loops through the move method from the robot until it has reached the goal
  */
 
 public class RobotTest
