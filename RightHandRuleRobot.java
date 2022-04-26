@@ -22,7 +22,8 @@ public class RightHandRuleRobot implements Robot {
     /**
      * Constructor: RightHandRuleRobot
      * Creates a robot and assign the its position to the start position.
-     * assign the default value of a position to the previous position
+     * Assign the default value of a position to the previous position.
+     * Depending where the start is it will set the starting directions accordingly
      *
      * @param maze
      */
@@ -37,17 +38,14 @@ public class RightHandRuleRobot implements Robot {
         this.previousPosition = new Position();
     }
 
+
     /**
      * Method: move
-     * <p>
-     * Prints out the current position.
-     * Then checks if there is any movable position around it if not does nothing.
-     * If there are any available position firstly checks
-     * if the robot has reached a dead end if it has moves to the previous position
-     * else it chooses and random position of the movable positions and moves to it.
+     * Moves the robot in the maze. It will prioritize going right
+     * then forwards then left and lastly backwards. It will get the directions
+     * after each movement.
      */
     public void move() {
-        //System.out.println("(" + position.getX() + "," + position.getY() + ")");
         if(maze.isMovable(getRight()))
         {
             previousPosition = getPosition();
@@ -133,6 +131,11 @@ public class RightHandRuleRobot implements Robot {
         return true;
     }
 
+    /**
+     * Method: setDirections
+     * Checks with the previous position of the robot to get which direction
+     * the robot is facing now
+     */
     private void setDirections()
     {
         if(this.previousPosition.getY() - 1 == this.position.getY())
@@ -160,18 +163,38 @@ public class RightHandRuleRobot implements Robot {
             left = position.getPosToSouth();
         }
     }
+
+    /**
+     * Method: getRight
+     * @return the position right of the robot
+     */
     private Position getRight()
     {
         return right;
     }
+
+    /**
+     * Method: getForwards
+     * @return the position forwards of the robot
+     */
     private Position getForwards()
     {
         return forwards;
     }
+    /**
+     * Method: getLeft
+     * @return the position left of the robot
+     */
     private Position getLeft()
     {
         return left;
     }
+
+    /**
+     * Method: setStartDirections
+     * Checks which position from the start position is movable
+     * then sets the directions accordingly
+     */
     private void setStartDirections()
     {
         if(maze.isMovable(position.getPosToSouth()))
@@ -198,19 +221,5 @@ public class RightHandRuleRobot implements Robot {
             right = position.getPosToSouth();
             left = position.getPosToNorth();
         }
-        /*
-        if(position.getY() <= 0)
-        {
-            forwards = position.getPosToSouth();
-            right = position.getPosToWest();
-            left = position.getPosToEast();
-        }
-        if(position.getY() > 0)
-        {
-            forwards = position.getPosToNorth();
-            right = position.getPosToEast();
-            left = position.getPosToWest();
-        }
-         */
     }
 }

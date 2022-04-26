@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * loop infinitely. If it reaches a dead end it will go to the position it was previously
  * and continue randomly moving.
  */
-public class RandomRobot
+public class RandomRobot implements Robot
 {
     private Position position;
     private Position previousPosition;
@@ -51,7 +51,7 @@ public class RandomRobot
      */
     public void move()
     {
-        System.out.println("(" + position.getX() + "," + position.getY() + ")");
+        //System.out.println("(" + position.getX() + "," + position.getY() + ")");
         ArrayList<Position> validMoves = new ArrayList<>();
 
         if(maze.isMovable(position.getPosToSouth()))
@@ -77,12 +77,6 @@ public class RandomRobot
                 Position p = this.getPosition();
                 this.setPosition(previousPosition);
                 previousPosition = p;
-                /*
-                 * ----NOT USED CODE----
-                 * Part of the visuals
-                 *
-                this.maze.printMaze(this.getPosition());
-                /**/
             }
             else
             {
@@ -101,12 +95,6 @@ public class RandomRobot
 
                 previousPosition = getPosition();
                 this.setPosition(p);
-                /*
-                 * ----NOT USED CODE----
-                 * Part of the visuals
-                 *
-                this.maze.printMaze(this.getPosition());
-                /**/
             }
         }
     }
@@ -141,7 +129,6 @@ public class RandomRobot
     {
         return this.maze.isGoal(this.position);
     }
-
     /**
      * Method: hasReachedDeadEnd
      * Checks all the position around the current if they are movable

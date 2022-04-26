@@ -80,13 +80,16 @@ public class Maze
         int cols = this.getNumColumns();
         int rows = this.getNumRows();
 
-        if(((p.getX() < 0) || (p.getX() > (cols - 1)) || (p.getY() <= 0) || p.getY() > (rows - 1)))
+        if(((p.getX() < 0) || (p.getX() > (cols - 1)) || (p.getY() < 0) || p.getY() > (rows - 1)))
         {
             return false;
         }
-
         String rowIndex = maze.get(p.getY());
-        if((rowIndex.charAt(p.getX()) != '*'))// || (rowIndex.charAt(p.getX()) == 'G'))
+        if((rowIndex.charAt(p.getX()) == 'S'))
+        {
+            return false;
+        }
+        if((rowIndex.charAt(p.getX()) != '*'))
         {
             return true;
         }
@@ -195,6 +198,7 @@ public class Maze
         }
 
     }
-        /**/
+
 
 }
+
