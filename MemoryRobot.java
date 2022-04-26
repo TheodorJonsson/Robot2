@@ -2,8 +2,9 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Stack;
 /**
- * Author: Theodor Jonsson, ens18trn
- * Date: April 13 2022
+ * @author Theodor Jonsson, ens18trn
+ * @since April 26 2022
+ * @version 1.0
  * Course: Objektorienterad Programmeringsmetodik
  */
 

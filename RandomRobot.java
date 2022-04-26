@@ -1,8 +1,9 @@
 import java.util.Random;
 import java.util.ArrayList;
 /**
- * Author: Theodor Jonsson, ens18trn
- * Date: April 13 2022
+ * @author Theodor Jonsson, ens18trn
+ * @since April 13 2022
+ * @version 1.1
  * Course: Objektorienterad Programmeringsmetodik
  */
 

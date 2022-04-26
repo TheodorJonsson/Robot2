@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Author: Theodor Jonsson, ens18trn
- * Date: April 13 2022
+ * @author Theodor Jonsson, ens18trn
+ * @since April 13 2022
+ * @version 1.0
  * Course: Objektorienterad Programmeringsmetodik
  */
 

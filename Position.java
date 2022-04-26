@@ -1,6 +1,7 @@
 /**
- * Author: Theodor Jonsson, ens18trn
- * Date: April 13 2022
+ * @author Theodor Jonsson, ens18trn
+ * @since April 28 2022
+ * @version 1.1
  * Course: Objektorienterad Programmeringsmetodik
  */
 
