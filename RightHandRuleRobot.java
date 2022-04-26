@@ -71,9 +71,6 @@ public class RightHandRuleRobot implements Robot {
             previousPosition = p;
         }
         setDirections();
-
-
-        this.maze.printMaze(this.getPosition());
     }
 
 
