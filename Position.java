@@ -26,7 +26,7 @@ public class Position
     }
 
     /**
-     * Constructor: Positio
+     * Constructor: Position
      * Creates a position with x and y values from paramaters
      *
      * @param x
@@ -109,10 +109,14 @@ public class Position
     @Override
     public boolean equals(Object o)
     {
+        if(o == null)
+        {
+            return false;
+        }
         if(o instanceof Position)
         {
             Position test = (Position) o;
-            if(this.hashCode() == test.hashCode())
+            if(test.x == this.x && test.y == this.y)
             {
                 return true;
             }
