@@ -4,13 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * For all tests to work you need to change directory of the text file to what you desire
+ */
 class MazeTest {
     private Maze maze;
-    /**
-     * For this test to work you need to change directory of the text file to what you desire
-     * @throws Exception
-     */
+
     @Test
     void checkIfFileIsFound() throws Exception
     {
