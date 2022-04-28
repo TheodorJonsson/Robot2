@@ -23,7 +23,7 @@ class RandomRobotTest {
         robot1.getPosition().equals(maze.getStart());
     }
     @Test
-    void shouldMoveNorthFirstStep() throws Exception
+    void shouldMoveSouthFirstStep() throws Exception
     {
         Scanner fileScanner = null;
         try
@@ -35,9 +35,11 @@ class RandomRobotTest {
             System.out.println("Couldn't find file");
         }
         Maze maze = new Maze(fileScanner);
+
         Robot robot1 = new RandomRobot(maze);
         robot1.move();
-        robot1.getPosition().equals(maze.getStart().getPosToNorth());
+        robot1.getPosition().equals(maze.getStart().getPosToSouth());
+
     }
     @Test
     void shouldNotBeInDeadEnd() throws Exception
