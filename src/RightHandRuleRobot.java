@@ -47,29 +47,36 @@ public class RightHandRuleRobot implements Robot {
      * after each movement.
      */
     public void move() {
-        if(maze.isMovable(getRight()))
-        {
-            previousPosition = getPosition();
-            setPosition(getRight());
-        }
-        else if(maze.isMovable(getForwards()))
-        {
-            previousPosition = getPosition();
-            setPosition(getForwards());
 
-        }
-        else if(maze.isMovable(getLeft()))
-        {
-            previousPosition = getPosition();
-            setPosition(getLeft());
-        }
-        else
+        if(getPrioritizedPosition().equals(previousPosition))
         {
             Position p = this.getPosition();
             setPosition(previousPosition);
             previousPosition = p;
         }
+        else
+        {
+            previousPosition = getPosition();
+            setPosition(getPrioritizedPosition());
+        }
         setDirections();
+    }
+    private Position getPrioritizedPosition()
+    {
+        if(maze.isMovable(getRight()))
+        {
+            return getRight();
+        }
+        else if(maze.isMovable(getForwards()))
+        {
+            return getForwards();
+
+        }
+        else if(maze.isMovable(getLeft()))
+        {
+            return getLeft();
+        }
+        return previousPosition;
     }
 
 
@@ -105,43 +112,6 @@ public class RightHandRuleRobot implements Robot {
         return this.maze.isGoal(this.position);
     }
     /**
-     * Method: hasReachedDeadEnd
-     * Checks all the position around the current if they are movable
-     * and not the previous position.
-     * @return true if all positions are not movable and not the previous position
-     *          false if one of them are.
-     */
-    public boolean hasReachedDeadEnd()
-    {
-        return checkMovablePositionsSurroundingPos(getPosition());
-    }
-    private boolean checkMovablePositionsSurroundingPos(Position pos)
-    {
-        if(isPositionMovable(pos.getPosToSouth()))
-        {
-            return false;
-        }
-        if(isPositionMovable(pos.getPosToNorth()))
-        {
-            return false;
-        }
-        if(isPositionMovable(pos.getPosToEast()))
-        {
-            return false;
-        }
-        if(isPositionMovable(pos.getPosToWest()))
-        {
-            return false;
-        }
-        return true;
-    }
-    private boolean isPositionMovable(Position pos)
-    {
-        return (maze.isMovable(pos) && !previousPosition.equals(pos));
-
-    }
-
-    /**
      * Method: setDirections
      * Checks with the previous position of the robot to get which direction
      * the robot is facing now
@@ -150,28 +120,68 @@ public class RightHandRuleRobot implements Robot {
     {
         if(this.previousPosition.getY() - 1 == this.position.getY())
         {
-            forwards = position.getPosToNorth();
-            right = position.getPosToEast();
-            left = position.getPosToWest();
+            northForwards();
         }
         if(this.previousPosition.getX() + 1 == this.position.getX())
         {
-            forwards = position.getPosToEast();
-            right = position.getPosToSouth();
-            left = position.getPosToNorth();
+            eastForwards();
         }
         if(this.previousPosition.getY() + 1 == this.position.getY())
         {
-            forwards = position.getPosToSouth();
-            right = position.getPosToWest();
-            left = position.getPosToEast();
+            southForwards();
         }
         if(this.previousPosition.getX() - 1 == this.position.getX())
         {
-            forwards = position.getPosToWest();
-            right = position.getPosToNorth();
-            left = position.getPosToSouth();
+            westForwards();
         }
+    }
+    /**
+     * Method: setStartDirections
+     * Checks which position from the start position is movable
+     * then sets the directions accordingly
+     */
+    private void setStartDirections()
+    {
+        if(maze.isMovable(position.getPosToSouth()))
+        {
+            southForwards();
+        }
+        else if(maze.isMovable(position.getPosToNorth()))
+        {
+            northForwards();
+        }
+        else if(maze.isMovable(position.getPosToWest()))
+        {
+            westForwards();
+        }
+        else if(maze.isMovable(position.getPosToEast()))
+        {
+            eastForwards();
+        }
+    }
+
+    private void westForwards() {
+        forwards = position.getPosToWest();
+        right = position.getPosToNorth();
+        left = position.getPosToSouth();
+    }
+
+    private void southForwards() {
+        forwards = position.getPosToSouth();
+        right = position.getPosToWest();
+        left = position.getPosToEast();
+    }
+
+    private void eastForwards() {
+        forwards = position.getPosToEast();
+        right = position.getPosToSouth();
+        left = position.getPosToNorth();
+    }
+
+    private void northForwards() {
+        forwards = position.getPosToNorth();
+        right = position.getPosToEast();
+        left = position.getPosToWest();
     }
 
     /**
@@ -200,36 +210,5 @@ public class RightHandRuleRobot implements Robot {
         return left;
     }
 
-    /**
-     * Method: setStartDirections
-     * Checks which position from the start position is movable
-     * then sets the directions accordingly
-     */
-    private void setStartDirections()
-    {
-        if(maze.isMovable(position.getPosToSouth()))
-        {
-            forwards = position.getPosToSouth();
-            right = position.getPosToWest();
-            left = position.getPosToEast();
-        }
-        else if(maze.isMovable(position.getPosToNorth()))
-        {
-            forwards = position.getPosToNorth();
-            right = position.getPosToEast();
-            left = position.getPosToWest();
-        }
-        else if(maze.isMovable(position.getPosToWest()))
-        {
-            forwards = position.getPosToWest();
-            right = position.getPosToNorth();
-            left = position.getPosToSouth();
-        }
-        else if(maze.isMovable(position.getPosToEast()))
-        {
-            forwards = position.getPosToEast();
-            right = position.getPosToSouth();
-            left = position.getPosToNorth();
-        }
-    }
+
 }

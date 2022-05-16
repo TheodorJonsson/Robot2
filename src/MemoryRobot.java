@@ -57,28 +57,15 @@ public class MemoryRobot implements Robot
     public void move()
     {
         Stack<Position> stack = new Stack<>();
-        //System.out.println("(" + position.getX() + "," + position.getY() + ")");
         if(!visited.contains(position))
         {
             visited.add(position);
         }
-        if((maze.isMovable(position.getPosToSouth())) && !(visited.contains(position.getPosToSouth())))
-        {
-            stack.push(position.getPosToSouth());
-        }
-        if((maze.isMovable(position.getPosToEast())) && !(visited.contains(position.getPosToEast())))
-        {
-            stack.push(position.getPosToEast());
-        }
-        if((maze.isMovable(position.getPosToNorth())) && !(visited.contains(position.getPosToNorth())))
-        {
-            stack.push(position.getPosToNorth());
-        }
-        if((maze.isMovable(position.getPosToWest())) && !(visited.contains(position.getPosToWest())))
-        {
-            stack.push(position.getPosToWest());
-        }
-        if(stack.isEmpty() == true)
+        pushMovablePosition(stack, position.getPosToWest());
+        pushMovablePosition(stack, position.getPosToEast());
+        pushMovablePosition(stack, position.getPosToSouth());
+        pushMovablePosition(stack, position.getPosToNorth());
+        if(stack.isEmpty())
         {
             setPosition(pathTraveled.peek());
             pathTraveled.pop();
@@ -88,8 +75,18 @@ public class MemoryRobot implements Robot
             setPosition(stack.peek());
             pathTraveled.push(stack.peek());
             visited.add(stack.peek());
-
         }
+    }
+    private void pushMovablePosition(Stack s, Position pos)
+    {
+        if(isPositionMovable(pos))
+        {
+            s.push(pos);
+        }
+    }
+    private boolean isPositionMovable(Position pos)
+    {
+        return ((maze.isMovable(pos) && !(visited.contains(pos))));
     }
 
     /**
@@ -129,24 +126,4 @@ public class MemoryRobot implements Robot
      * @return true if all positions are not movable and not the previous position
      *          false if one of them are.
      */
-    public boolean hasReachedDeadEnd()
-    {
-        if(this.maze.isMovable(position.getPosToSouth()) && !this.previousPosition.equals(position.getPosToSouth()))
-        {
-            return false;
-        }
-        if(this.maze.isMovable(position.getPosToEast()) && !this.previousPosition.equals(position.getPosToEast()))
-        {
-            return false;
-        }
-        if(this.maze.isMovable(position.getPosToNorth()) && !this.previousPosition.equals(position.getPosToNorth()))
-        {
-            return false;
-        }
-        if(this.maze.isMovable(position.getPosToWest()) && !this.previousPosition.equals(position.getPosToWest()))
-        {
-            return false;
-        }
-        return true;
-    }
 }

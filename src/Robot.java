@@ -19,5 +19,4 @@ public interface Robot
 
     public boolean hasReachedGoal();
 
-    public boolean hasReachedDeadEnd();
 }
