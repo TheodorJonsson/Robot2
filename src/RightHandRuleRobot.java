@@ -61,6 +61,13 @@ public class RightHandRuleRobot implements Robot {
         }
         setDirections();
     }
+
+    /**
+     * Firstly checks if the position to the right is movable
+     * then forwards and lastly left. If all of these aren't
+     * movable it returns the previousPosition
+     * @return the prioritized position
+     */
     private Position getPrioritizedPosition()
     {
         if(maze.isMovable(getRight()))
@@ -160,24 +167,33 @@ public class RightHandRuleRobot implements Robot {
         }
     }
 
+    /**
+     * Sets the direction if west is forwards.
+     */
     private void westForwards() {
         forwards = position.getPosToWest();
         right = position.getPosToNorth();
         left = position.getPosToSouth();
     }
-
+    /**
+     * Sets the direction if south is forwards.
+     */
     private void southForwards() {
         forwards = position.getPosToSouth();
         right = position.getPosToWest();
         left = position.getPosToEast();
     }
-
+    /**
+     * Sets the direction if east is forwards.
+     */
     private void eastForwards() {
         forwards = position.getPosToEast();
         right = position.getPosToSouth();
         left = position.getPosToNorth();
     }
-
+    /**
+     * Sets the direction if north is forwards.
+     */
     private void northForwards() {
         forwards = position.getPosToNorth();
         right = position.getPosToEast();

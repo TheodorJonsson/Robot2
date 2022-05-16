@@ -77,6 +77,12 @@ public class MemoryRobot implements Robot
             visited.add(stack.peek());
         }
     }
+
+    /**
+     * Pushes the position to the stack if it's a movable position
+     * @param s, which is the stack
+     * @param pos, which is the position to be checked
+     */
     private void pushMovablePosition(Stack s, Position pos)
     {
         if(isPositionMovable(pos))
@@ -84,6 +90,12 @@ public class MemoryRobot implements Robot
             s.push(pos);
         }
     }
+
+    /**
+     * Checks if the position is movable
+     * @param pos, which is the position to be checked
+     * @return true if it's a movable position, false if it isn't
+     */
     private boolean isPositionMovable(Position pos)
     {
         return ((maze.isMovable(pos) && !(visited.contains(pos))));
