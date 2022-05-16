@@ -1,4 +1,7 @@
-import java.util.Random;
+import src.Maze;
+import src.Position;
+import src.Robot;
+
 import java.util.ArrayList;
 import java.util.Stack;
 /**

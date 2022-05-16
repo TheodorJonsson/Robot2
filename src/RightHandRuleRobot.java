@@ -1,5 +1,5 @@
-import java.util.Random;
-import java.util.ArrayList;
+
+
 /**
  * @author Theodor Jonsson, ens18trn
  * @since April 26 2022
@@ -113,23 +113,32 @@ public class RightHandRuleRobot implements Robot {
      */
     public boolean hasReachedDeadEnd()
     {
-        if(this.maze.isMovable(position.getPosToSouth()) && !this.previousPosition.equals(position.getPosToSouth()))
+        return checkMovablePositionsSurroundingPos(getPosition());
+    }
+    private boolean checkMovablePositionsSurroundingPos(Position pos)
+    {
+        if(isPositionMovable(pos.getPosToSouth()))
         {
             return false;
         }
-        if(this.maze.isMovable(position.getPosToEast()) && !this.previousPosition.equals(position.getPosToEast()))
+        if(isPositionMovable(pos.getPosToNorth()))
         {
             return false;
         }
-        if(this.maze.isMovable(position.getPosToNorth()) && !this.previousPosition.equals(position.getPosToNorth()))
+        if(isPositionMovable(pos.getPosToEast()))
         {
             return false;
         }
-        if(this.maze.isMovable(position.getPosToWest()) && !this.previousPosition.equals(position.getPosToWest()))
+        if(isPositionMovable(pos.getPosToWest()))
         {
             return false;
         }
         return true;
+    }
+    private boolean isPositionMovable(Position pos)
+    {
+        return (maze.isMovable(pos) && !previousPosition.equals(pos));
+
     }
 
     /**

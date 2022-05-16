@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import src.Maze;
 
 import java.io.File;
 import java.io.FileNotFoundException;

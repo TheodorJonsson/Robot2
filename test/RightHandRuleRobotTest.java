@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+import src.Maze;
+import src.RandomRobot;
+import src.Robot;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.util.ArrayList;
 /**
@@ -52,7 +53,6 @@ public class RandomRobot implements Robot
      */
     public void move()
     {
-        //System.out.println("(" + position.getX() + "," + position.getY() + ")");
         ArrayList<Position> validMoves = new ArrayList<>();
 
         if(maze.isMovable(position.getPosToSouth()))
